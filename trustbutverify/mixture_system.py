@@ -167,6 +167,8 @@ class MixtureSystem(System):
             density_ts = density_ts[t0:]
             density_mean_stderr = density_ts.std() / np.sqrt(Neff)
             if density_mean_stderr < self.stderr_tolerance:
+                self.density_mean_stderr = density_mean_stderr
+                self.first_converged_step = np.array(d.step)[t0]
                 converged = True
 
         del(simulation)
